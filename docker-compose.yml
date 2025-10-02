@@ -1,0 +1,18 @@
+services:
+  jupyter:
+    build: .
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    # Remove token and password for proxy auth
+    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
+    environment:
+      # Just point to where it will be inside container
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/gcp/sa-key.json
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      # Persist notebooks and data
+      - ./data:/home/jovyan/work
+      # Mount service account JSON outside notebook folder
+      - ./sa-key.json:/opt/gcp/sa-key.json:ro
+    restart: unless-stopped
