@@ -5,7 +5,7 @@ services:
     ports:
       - "8888:8888"
     # Remove token and password for proxy auth
-    command: start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''
+    command: start-notebook.sh --ServerApp.token='' --ServerApp.password=''
     environment:
       # Just point to where it will be inside container
       - GOOGLE_APPLICATION_CREDENTIALS=/opt/gcp/sa-key.json
