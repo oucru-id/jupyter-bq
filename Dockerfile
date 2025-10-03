@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:latest
+FROM jupyter/datascience-notebook:latest
 
 # Switch to root to install system deps if needed
 USER root
