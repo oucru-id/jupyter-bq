@@ -3,6 +3,10 @@ FROM jupyter/scipy-notebook:latest
 # Switch to root to install system deps if needed
 USER root
 
+# Grant sudo / root access for jovyan user
+RUN echo "jovyan ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jovyan && \
+    chmod 0440 /etc/sudoers.d/jovyan
+
 # Install BigQuery + GCP libraries + Jupyter plugin
 RUN pip install --no-cache-dir \
     google-cloud-bigquery \
